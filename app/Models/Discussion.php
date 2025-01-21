@@ -72,10 +72,12 @@ class Discussion extends Model
 
     //this is focussing on the first post that is rather the parent post before the child posts
     public function post(){
+    // Fetches one column where parent_is is null
     return $this->hasOne(Post::class)->whereNull('parent_id');
     }
 
     public function latestPost(){
+        //fetches one row which is the latest
         return $this->hasOne(Post::class)->latestOfMany();
     }
 
@@ -92,8 +94,13 @@ class Discussion extends Model
         return $this->belongsTo(Post::class, 'solution_post_id');
     }
 
+    // indexing for the search
     public function toSearchableArray()
     {
         return $this->only('id', 'title');
     }
+
+    // public function participants(){
+    //     return $this->hasManyThrough(User::class, Post::class, 'discussion_id connect the posts to the discussion model', 'id column in the users table links users to posts table', 'id from discussion links it to posts', 'user_id from posts table connects posts to users')->distinct();
+    // }
 }

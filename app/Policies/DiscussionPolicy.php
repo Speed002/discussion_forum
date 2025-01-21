@@ -10,9 +10,9 @@ class DiscussionPolicy
     /**
      * Create a new policy instance.
      */
-    // is a user allowed to create a discussion
+    // is a user who is logged in allowed to create a discussion
     public function create(User $user){
-        return true;
+        return true; //yes they are
     }
     // is a user allowed to reply to a discussion
     public function reply(User $user, Discussion $discussion){

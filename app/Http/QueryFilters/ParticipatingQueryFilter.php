@@ -14,10 +14,27 @@ class ParticipatingQueryFilter implements Filter
             return;
         }
 
-        // in the current iterating query, we shall append the following code to return a filter
-        $query->where('user_id', '!=', auth()->id())
-            ->whereHas('posts', function($query){
+        //for each of the discussions being displayed, we ensure that they have posts eg.
+        //$query->whereHas('posts')
+        //Now, into each post we are performing queries
+        // $query->whereHas('posts', function($query){
+            // in each post we are looking through, we want to make sure that the post belongs to the user
+            // $query->whereBelongsTo(auth()->user());
+        // })
+
+        // IN SHORT:: DOES THIS DISCUSSION HAVE ANY POSTS WHICH BELONG TO THE CURRENTLY AUTHENTICATED USER
+        // $query
+            //ON TOP OF THE CURRENT ITERATION, WE CAN THEN EXCLUDE ANY POST THAT BELONGS TO US...EG.
+
+        // ->where('user_id', '!=', auth()->id())
+        // ->whereHas('posts', function($query){
+        //      $query->whereBelongsTo(auth()->user());
+        // })
+        //and inside the posts
+        $query
+        ->where('user_id', '!=', auth()->id()) //where user_id on the Discussion table does not belong to the auth-user
+        ->whereHas('posts', function($query){ //but inside the posts of the discussion, a post belongs to the auth-user
                 $query->whereBelongsTo(auth()->user());
-            });
+        });
     }
 }

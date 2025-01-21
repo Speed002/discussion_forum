@@ -22,7 +22,7 @@ const props = defineProps({
     query:Object
 })
 
-// invoking the useCreateDiscussion before using it
+// invoking the useCreateDiscussion before using it from this composable
 const { showCreateDiscussionForm } = useCreateDiscussion() //at this point, we are pulling out the visible item returned from the useCreateDiscusison export function, which we can now use in our application
 
 const filterTopic = (e) => {
@@ -95,4 +95,3 @@ watch(searchQuery, (query) => {
         </div>
     </ForumLayout>
 </template>
-

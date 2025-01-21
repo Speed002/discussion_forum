@@ -43,6 +43,8 @@ class ForumIndexController extends Controller
                 }
             })
             ->paginate(10)
+            //we append on an instance that we are filtering and our filter results come on more than one page
+            //the appends($request->query()) persists the filter in the url, this keeps our url clean and safe from tamper
             ->appends($request->query())
             )
         ]);
