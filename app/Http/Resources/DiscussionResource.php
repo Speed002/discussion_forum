@@ -27,6 +27,7 @@ class DiscussionResource extends JsonResource
             'participants' => PublicUserResource::collection($this->whenLoaded('participants')),
             'user_can' => [
                 // auth()->check() -> helps to findout if a user is authenticated or not
+                // authenticated user can reply to the discussion
                 'reply' => auth()->check() && auth()->user()->can('reply', $this->resource),
                 'delete' => auth()->check() && auth()->user()->can('delete', $this->resource),
                 'solve' => auth()->check() && auth()->user()->can('solve', $this->resource),

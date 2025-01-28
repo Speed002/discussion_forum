@@ -17,3 +17,4 @@ class MineQueryFilter implements Filter
         $query->whereBelongsTo(auth()->user());
     }
 }
+    

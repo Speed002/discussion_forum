@@ -17,14 +17,11 @@ use App\Http\QueryFilters\ParticipatingQueryFilter;
 class ForumIndexController extends Controller
 {
     public function __invoke(Request $request){
-
         // this gives us back a response after using meilisearch
         // dd(Discussion::search('Laravel')->get());
         // dd($request->search);
-
-
         return inertia()->render('Forum/Index', [
-            // we are casting the query as an object
+            // we are casting the query as an object, to pass it to the vue so that we can build queries with it.
             'query' => (object) $request->query(),
             //you can use with(['model', 'model']) -> this joins more than model
             'discussions' => DiscussionResource::collection(

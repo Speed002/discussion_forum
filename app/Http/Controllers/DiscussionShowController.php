@@ -21,7 +21,7 @@ class DiscussionShowController extends Controller
             ]);
         }
 
-        // this is helping load the discussions with the relationship called topic that connects the discussion model to the topic model
+        // this is helping load the discussion relationships called topic that connects the discussion model to the topic model
         $discussion->load(['topic', 'posts.discussion', 'solution']);
         // above is how we load the relationship with the model when we are in a controller
         return inertia()->render('Forum/Show', [
@@ -34,7 +34,8 @@ class DiscussionShowController extends Controller
                 ->oldest()
                 ->paginate(self::POSTS_PER_PAGE)
             ),
-            // casting the postId into an integer
+            // casting the postId into an integer, instead of converting, we can just cast it into an integer
+            // Object....(value)
             'postId' => (int) $request->postId,
         ]);
     }

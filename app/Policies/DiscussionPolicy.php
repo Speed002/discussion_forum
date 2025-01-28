@@ -10,7 +10,7 @@ class DiscussionPolicy
     /**
      * Create a new policy instance.
      */
-    // is a user who is logged in allowed to create a discussion
+    // a user who is logged in allowed to create a discussion
     public function create(User $user){
         return true; //yes they are
     }

@@ -31,6 +31,8 @@ class ParticipatingQueryFilter implements Filter
         //      $query->whereBelongsTo(auth()->user());
         // })
         //and inside the posts
+        // where discussion.user_id is not equal to auth()->id()
+        // but where the discussion has posts that belong to the auth()->user()
         $query
         ->where('user_id', '!=', auth()->id()) //where user_id on the Discussion table does not belong to the auth-user
         ->whereHas('posts', function($query){ //but inside the posts of the discussion, a post belongs to the auth-user
