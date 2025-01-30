@@ -13,6 +13,10 @@ class ProfileUpdateRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
      */
+    // public function authorize(): bool{
+    //     return auth()->user()->can('create', $this->user);
+    // }
+    
     public function rules(): array
     {
         return [

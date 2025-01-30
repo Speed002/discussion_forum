@@ -72,7 +72,7 @@ class Discussion extends Model
 
     //this is focussing on the first post that is rather the parent post before the child posts
     public function post(){
-    // Fetches one column where parent_is is null
+    // Fetches the first post of the discussion which has no parent_id
     return $this->hasOne(Post::class)->whereNull('parent_id');
     }
 

@@ -27,7 +27,7 @@
                 <div class="flex flex-col items-end">
                     <div class="flex items-center space-x-3">
                         <div class="flex items-center justify-start -space-x-2">
-                            <img :src="participant.avatar_url" v-for="participant in participants" :key="participant.id" alt="" class="h-6 w-6 rounded-full ring-2 ring-white">
+                            <img :src="participant.avatar_url" v-for="participant in participants" :key="participant.id" alt="" class="h-6 w-6 rounded-full ring-2 ring-white first-of-type:w-7 first-of-type:h-7">
                         </div>
                         <span v-if="discussion.participants.length > 2"> + {{ discussion.participants.length - 2 }} more</span>
                     </div>

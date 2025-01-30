@@ -16,7 +16,7 @@ class DiscussionPolicy
     }
     // is a user allowed to reply to a discussion
     public function reply(User $user, Discussion $discussion){
-        return true;
+        return true; //we can just return true or we can compare specific data to return that specific criteria before action is taken
     }
     // is a user allowed to delete a discussion, we only must ensure that their ids match the ids of the Discussions
     public function delete(User $user, Discussion $discussion){

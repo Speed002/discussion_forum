@@ -21,7 +21,8 @@ class DiscussionShowController extends Controller
             ]);
         }
 
-        // this is helping load the discussion relationships called topic that connects the discussion model to the topic model
+        // this is helping load the discussion.topic, discussion.solution relationships that connects the discussion model to the topic model
+        // since theres no way for eager loading using with make()
         $discussion->load(['topic', 'posts.discussion', 'solution']);
         // above is how we load the relationship with the model when we are in a controller
         return inertia()->render('Forum/Show', [

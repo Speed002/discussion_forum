@@ -11,6 +11,7 @@ class PostStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
+        // am using the reply policy from here
         return auth()->user()->can('reply', $this->discussion);
     }
 
