@@ -13,11 +13,15 @@ class UserMention extends Model
 
     protected $table = 'users';
 
+    // since this is a custom user model created, we cant index it as Users,
+    // but we have to specify what we are encountering it as
     public function searchableAs()
     {
+        // meilisearch will index it as users_mentions
         return 'users_mentions';
     }
 
+    // this is what will be returned once the data is searched
     public function toSearchableArray()
     {
         return [

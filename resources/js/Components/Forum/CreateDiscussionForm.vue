@@ -8,9 +8,12 @@ import Select from '../Select.vue';
 import Textarea from './Textarea.vue';
 import PrimaryButton from '../PrimaryButton.vue';
 import { Mentionable } from 'vue-mention';
+import useMentionSearch from '@/Composables/useMentionSearch';
 
 // invoking the useCreateDiscussion before using it
 const { visible, hideCreateDiscussionForm, form } = useCreateDiscussion() //at this point, we are pulling out the visible item returned from the useCreateDiscusison export function, which we can now use in our application
+
+const { mentionSearch, mentionSearchResults } = useMentionSearch()
 
 const createDiscussion = () => {
     form.post(route('discussion.store'), {
@@ -20,6 +23,8 @@ const createDiscussion = () => {
         }
     })
 }
+
+
 
 </script>
 
@@ -61,7 +66,8 @@ const createDiscussion = () => {
             <div class="mt-4">
                 <InputLabel for="body" value="Body" class="sr-only"/>
 
-                <Mentionable :keys="['@']" offset="6" :items="[{label:'Alex (@alex)', value:'alex'}, {label:'Mabel (@mabel)', value:'mabel'}]">
+                <Mentionable :keys="['@']" offset="6" v-on:search="mentionSearch" :items="mentionSearchResults">
+                    <!-- :items="[{label:'Alex (@alex)', value:'alex'}, {label:'Mabel (@mabel)', value:'mabel'}]" -->
                     <textarea id="body" v-if="!markdownPreviewEnabled" class="w-full h-48 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm py-2 align-top" v-model="form.body" rows="6"/>
                 </Mentionable>
 

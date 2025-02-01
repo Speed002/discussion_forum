@@ -12,6 +12,8 @@ class DiscussionDestroyRequest extends FormRequest
     public function authorize(): bool
     {
         // this is a discussion request to delete a discussion, so we are checking through the policy['delete'] if we can delete the discussion
+        // here, the $discussion was passed through...
+        // if it wasnt passed through, it would have been Discussion::class
         return auth()->user()->can('delete', $this->discussion);
     }
 

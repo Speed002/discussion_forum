@@ -15,6 +15,8 @@ class StoreDiscussionRequest extends FormRequest
     public function authorize(): bool
     {
         // set this to true or false depending on whether you want to allow a user to be authorized or not in order to access this request class
+        // Here, because we are creating a discussion, $discussion was not passed down to the controller, but it had to be created
+        // so we are authorizing create on the Discussion::class
         return auth()->user()->can('create', Discussion::class);
     }
 

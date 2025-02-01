@@ -12,6 +12,7 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 class EventServiceProvider extends ServiceProvider
 {
 
+    // Registering Observers // that carry events
     protected $observers = [
         User::class => [UserObserver::class]
     ];

@@ -21,6 +21,7 @@ class Discussion extends Model
     ];
 
     // the boot function allows us to hook into any eloquent events like create, delete and more--------------------------------------------------------------------------------
+    // THE BOOT FUNCTION IN OTHER WORDS IS AN OBSERVER!
     protected static function booted()
     {
         // once the created event is hitted up, we are updating a slug immediately as the title of the app...

@@ -36,15 +36,25 @@ const filterTopic = (e) => {
     })
 }
 
+// MEILISEARCH...
+// this value searchQuery is binded to v-model="searchQuery" in the search input field
 const searchQuery = ref(props.query.search || '')
 
+// debouncing helps to delay the execution of a function by a specific timeframe
 const handleSearchInput = _debounce((query) => {
+    // the router reload makes a request to the same page, without changing us on another page, its like refreshing the page with new data
     router.reload({
-        data:{search: query},
+        // this is the data we pass to the controller to search for, and as we accept it there,
+        // we accept it as $request->search, because the data passed on to the controller is search which is
+        // coming from data.search
+        data:{
+            search: query
+        },
         preserveScroll:true
     })
 }, 500)
 // here, we are watching any changes inside the searchQuery watch(searchQuery, () => {}), when we use watch(), we expect a call back
+// watch is waiting to hear any changes inside the value searchQuery, andit will return a callback to inform us incase there's any
 watch(searchQuery, (query) => {
     handleSearchInput(query)
 })

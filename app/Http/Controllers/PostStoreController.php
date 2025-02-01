@@ -12,6 +12,7 @@ class PostStoreController extends Controller
     public function __invoke(PostStoreRequest $request, Discussion $discussion){
         $post = Post::make($request->validated());
 
+        //the associate is connecting the child to the parent model using the foreignKey of the parent
         $post->user()->associate($request->user());
         $post->discussion()->associate($discussion);
         $post->parent()->associate($discussion->post);

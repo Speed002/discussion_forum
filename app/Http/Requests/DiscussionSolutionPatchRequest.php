@@ -11,6 +11,8 @@ class DiscussionSolutionPatchRequest extends FormRequest
      */
     public function authorize(): bool
     {
+        // Here, $discussion was passed through to the controller, then we are having $this->discussion,
+        // if it wasnt passed down to the controller, we would have had Discussion::class
         return auth()->user()->can('solve', $this->discussion);
     }
 

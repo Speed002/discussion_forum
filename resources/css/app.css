@@ -2,16 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/* markdown styles */
+/* applying margin bottom to markdown paragraphs */
 .markdown p{
     /* This is how apply is used in tailwind css */
     @apply mb-1;
 }
 
+/* applying style to markdown codes */
 code {
+    /* this is so the code doesnt cross the border of its container, it stays wrapped inside */
     @apply whitespace-pre-wrap leading-loose;
 }
-
 /* the container responsible for holding the markdown */
+/* applying style to markdown codes */
 .shiki{
     @apply p-3 rounded-lg my-4 text-sm
 }
